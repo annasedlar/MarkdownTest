@@ -15,13 +15,13 @@ tags:
 - infrastructure
 
 ---
-*** NOTE: Currently in the process of being edited! *** 
+
 
 > "Cloud native infrastructure is more than servers, network, and storage in the cloud—it is as much about operational hygiene as it is about elasticity and scalability” 
 -- RedHat
 
 # What is Kubernetes and Why Should BNR Care? 
-Kubernetes is a container orchestration system built by teams at Google. You may have heard of Docker. While these two projects exists very closely, they are not the same. Docker is used to build containers themselves, it is considered a container runtime (Docker is also similar to Virtual Machines, in that both are abstraction layers running atop a machine. Docker containers, however are smaller and quicker to spin up than VMs.) Containers are a means of bundling or packaging a software application with it's dependencies that can then be run by a system that supports this format (ie. The Docker Engine). Docker is all about managing apps within an individual machine. Kubernetes is the platform that can manage, scale, monitor, and configure these containers.
+Kubernetes is a container orchestration system built by teams at Google. The poroject now lives under the Cloud Native Computing Foundation, a vendor-neutral space with strong community support. According to the tech news, it’s one of the fastest growing projects of all time! You may have heard of Docker. While these two projects exists very closely, they are not the same. Docker is used to build containers themselves, it is considered a container runtime (Docker is also similar to Virtual Machines, in that both are abstraction layers running atop a machine. Docker containers, however are smaller and quicker to spin up than VMs.) Containers are a means of bundling or packaging a software application with it's dependencies that can then be run by a system that supports this format (ie. The Docker Engine). Docker is all about managing apps within an individual machine. Kubernetes is the platform that can manage, scale, monitor, and configure these containers.
 
 Kubernetes was designed to operationalize containerized applications. Using Kubernetes, containers will run under a single service in what they introduced as Pods. Kubernetes is often referred to as a Container Orchestration Environment (COE). Think fleets of containers across multiple hosts. Docker recently released a new project, Docker Swarm which is it's own COE and addresses these functions similarly to Kubernetes. COEs manage the containers when running multiple instances of a containerized application. A COE’s simplest function is to launch an application and ensure that application is running. If a given Container instance fails, Kubernetes (or Docker Swarm) would recognize this and spin up another container (or rather, another Pod in Kubernetes case). Kubernetes can also be configured to scale the application up or down in response to demand.
 
@@ -29,9 +29,69 @@ Kubernetes is definitely more Devops than Dev work. In fact, it's more Ops than 
 
 What value does this hold for Big Nerd Ranch? This was on my mind throughout the conference and to be honest, I'd love to hear the thoughts from other, more experienced nerds on this topic. From what I understand, our client work is usually a code hand-off and the client is responsible for deploying the application where and how they see fit. And for our in-house apps, I have only seen us use Heroku, which seems perfectly sufficient for hosting our small apps. I imagine if we were a product team, Kubernetes would definitely be more relevant. 
 
-# Nitty Gritty Components of Kubernetes
+# Nitty Gritty Components of Kubernetes 
+### ([Thanks to this article for concise definitions](https://blog.giantswarm.io/understanding-basic-kubernetes-concepts-i-introduction-to-pods-labels-replicas/))
+#### Pods
+The smallest deployable unit of computing that can be created and managed in Kubernetes. Pods *can* contain one single container, but they aren't limited to just one. All containers in a pod run as if they would have been running on a single host in pre-container world. They share a set of Linux namespaces and do not run isolated from each other. This results in them sharing an IP address and port space, and being able to find each other over localhost or communicate over the IPC namespace. Further, all containers in a pod have access to shared volumes, that is they can mount and work on the same volumes if needed. A YAML (Yet Another Markup Language) file is used to define a pod. Below is an example pod written in YAML:
+```apiVersion: v1
+kind: Pod
+metadata:
+ name: nginx-pod
+ labels:
+  app: nginx
+spec:
+ containers:
+ - name: nginx
+  image: nginx:1.7.9
+```
 
-# Gimme Some Context - The Big Dogs in the Container Game:
+#### ReplicaSets
+A pod by itself is ephemeral/'mortal' and won’t be rescheduled if the node it is running on goes down. ReplicaSets ensure that a specific number of pod instances (or replicas) are running at any given time. If you want your pod to stay alive you make sure you have an according replica set specifying at least one replica for that pod. The ReplicaSet then takes care of (re)scheduling your instances for you.
+A ReplicaSet can not only manage a single pod but also a group of different pods selected based on a common label. This enables a replica set to for example scale all pods that together compose the frontend of an application together without having to have identical ReplicaSets for each pod in the frontend.
+
+#### Deployments
+A controller that provides declarative updates for Pods and ReplicaSets by changing the state of them at a controlled rate. Used for creating new ReplicaSets or removing existing Deployments. 
+The folloring Deployment creates a ReplicaSet to bring up three nginx Pods: 
+```apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.7.9
+        ports:
+        - containerPort: 80
+```
+
+#### Services
+A service is a grouping of pods that are running on the cluster. Services are "cheap" and you can have many services within the cluster of Pods. Kubernetes services can efficiently power a microservice architecture. Services provide important features that are standardized across the cluster: load-balancing, service discovery between applications, health checks and features to support zero-downtime application deployments. The example below targets TCP port 80 on any Pod with the `run: my-nginx` label, and expose it similar to a REST API. 
+```apiVersion: v1
+kind: Service
+metadata:
+  name: my-nginx
+  labels:
+    run: my-nginx
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+  selector:
+    run: my-nginx
+```
+
+# Gimme Some Context - The Big Dog$ in the Container Game:
 ### Or at least those that were represented at KubeCon
 * Google
 * Google Cloud Platform
@@ -47,12 +107,15 @@ What value does this hold for Big Nerd Ranch? This was on my mind throughout the
 * DataDog
 * Sysdig
 * WeaveWorks
+* Mirantis
+* huawei
+* Meteor
 * Dynatrace
 
 
 # Notable Talks
 * Guinevere's
-* ??? 
+* Justin ___
 * ??? 
 * ?? 
 
@@ -79,50 +142,3 @@ What value does this hold for Big Nerd Ranch? This was on my mind throughout the
 * [Sarah Novotny](https://twitter.com/sarahnovotny)
 * [Jessie Frazelle](https://twitter.com/jessfraz)
 * [Jorge Castro](https://twitter.com/castrojo)
-
-
-Kubernetes 101 w/ Justin ____? - kubelets ~= docker. A single standalone unit that has one job (more options when in a cluster but you can have just a standalone kubelet on a server). Yaml on discs. Runs that container and that's his job.
-etcd - database running in the cloud. Keeps track of each kubelet node with labels and pods (vic is running a django pod that's scheduled)
-To talk between databases + pods, need API server. This is the only service that can talk to the database.
-Containers make replica sets - how many pods we want.
-Controller Manager - does a lot. Looks at replica sets and keeps track of them, reconsile state - matches replicas with how many we specified that we want in the database.
-
-If something goes down, kubelet re-runs whatever is assigned to it. It has one job!
-
-Services have labels, what labels the service itself wants to match, pods.
-Ie: service: Ruby, Labels: Gem, Match Labels: Red, Pods:
-
-If you lose a node, you can't change the state of the cluster. If etcd is down, you can't add a service.
-
-Tour of Distributed Systems w/in Kubernetes: Bo Ingram
-Pod = 1+ containers that share a unique IP address
-Deployment = manage pods. Use replica sets to ensure # of pods is correct. Replica sets will create our pods, then a scheduler will ______ ?
-Kubernetes is distributed
-
-Master Kubernetes Components: etcd, API server, controllers, scheduler
-etcd -> (via rest calls) -> API server -> controllers diff states -> scheduling unscheduled pods
-Node Components: -kubelet, kube-proxy, container runtime
-kube-poxy: maintains networking
-
-etcd = data store. distributed key/value store. quora: min. number of healthy nodes.
-CAP Theorum- consistency, availability, partition tolerance.
-etcd = willing to sacrified availablity to achieve consistency + partition tolerance.
-
-Raft = consensus algo for managing replicated log. State management. Elect raft leader. Three states: Leader, follower, candidate. One leader/term. Leader sends heartbeat messages. If no heartbeat, election time via rpc!
-
-Check out: Raft Paper
-
-Replica set has a selector to select labels to manage. Deployment controller manages the whole deployment process of your app.
-
-Scheduler is constantly querying etcd and ____ looking for unscheduled pods to assign them to a node.
-
-kubectl ->  How we submit our deployment. kubctl creates deployment, replica set creates 3 sets, scheduler schedules them, kubelet will run scheduled pods.
-
-2017-12-10 10:07 Sharing KubeCon Experience in a NerdNote + NST
-1st: learn how BNR normally does clients' deployments.
-
-   - pods, etcd, scheduler, kubectl ...
-   - differences between VM and container solutions
-   - discuss specific sessions
-   - books that'll leave at BNR bookcase ..
-
