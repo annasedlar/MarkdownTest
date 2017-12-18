@@ -31,7 +31,7 @@ What value does this hold for Big Nerd Ranch? This was on my mind throughout the
 
 # Nitty Gritty Components of Kubernetes
 
-# Give Me Some Context - The Big Dogs in the Container Game
+# Gimme Some Context - The Big Dogs in the Container Game:
 ### Or at least those that were represented at KubeCon
 * Google
 * Google Cloud Platform
@@ -63,12 +63,12 @@ What value does this hold for Big Nerd Ranch? This was on my mind throughout the
 * [Kubernetes Bootcamp](https://kubernetesbootcamp.github.io/kubernetes-bootcamp/)
 * [ATL Kubernetes Meetup](https://www.meetup.com/Kubernetes-Atlanta-Meetup)
 * [Kubernetes Mentoring Initiative](https://github.com/kubernetes/community/tree/master/mentoring)
-* [Kubernetes](https://kubernetes.io/)
+* [Kubernetes.io](https://kubernetes.io/)
 * [Cloud Native Computing Foundation](https://www.cncf.io/)
 * [KubeCon 2018 Copenhagen (May 2-4) Scholarship Opportunity](http://events.linuxfoundation.org/events/kubecon-and-cloudnativecon-europe/attend/scholarship-opportunities) 
 * [Kubernetes youtube live 'Office Hours' Thursdays 1pm EST](https://www.youtube.com/c/KubernetesCommunity/live)
 * [Join Kubernetes Slack Channel](http://slack.k8s.io/)
-* 
+* [Linux Foundation Events](https://events.linuxfoundation.org/events/kubecon-cloudnativecon-europe-2018/)
 
 ### People to Follow
 * [Kelsey Hightower] (https://twitter.com/kelseyhightower)
