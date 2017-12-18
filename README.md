@@ -29,8 +29,53 @@ Kubernetes is definitely more Devops than Dev work. In fact, it's more Ops than 
 
 What value does this hold for Big Nerd Ranch? This was on my mind throughout the conference and to be honest, I'd love to hear the thoughts from other, more experienced nerds on this topic. From what I understand, our client work is usually a code hand-off and the client is responsible for deploying the application where and how they see fit. And for our in-house apps, I have only seen us use Heroku, which seems perfectly sufficient for hosting our small apps. I imagine if we were a product team, Kubernetes would definitely be more relevant. 
 
-# Nitty Gritty Components of Kubernetes 
-### ([Thanks to this article for concise definitions](https://blog.giantswarm.io/understanding-basic-kubernetes-concepts-i-introduction-to-pods-labels-replicas/))
+# Gimme Some Context - The Big Dog$ in the Container Game:
+### (Or at least those that were represented at KubeCon)
+* Google
+* Google Cloud Platform
+* Heptio
+* IBM
+* Microsoft - Azure
+* Amazon - AWS
+* Docker
+* RedHat
+* CoreOS
+* Tigera
+* Mezosphere
+* DataDog
+* Sysdig
+* WeaveWorks
+* Mirantis
+* huawei
+* Meteor
+* Dynatrace
+
+# Helpful Resources
+* [Kubernetes Docs (incl. tutorial)](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
+* [Kubernetes the Hard Way](https://github.com/kelseyhightower/kubernetes-the-hard-way)
+* [Kubernetes Bootcamp](https://kubernetesbootcamp.github.io/kubernetes-bootcamp/)
+* [ATL Kubernetes Meetup](https://www.meetup.com/Kubernetes-Atlanta-Meetup)
+* [Kubernetes Mentoring Initiative](https://github.com/kubernetes/community/tree/master/mentoring)
+* [Kubernetes.io](https://kubernetes.io/)
+* [Cloud Native Computing Foundation](https://www.cncf.io/)
+* [KubeCon 2018 Copenhagen (May 2-4) Scholarship Opportunity](http://events.linuxfoundation.org/events/kubecon-and-cloudnativecon-europe/attend/scholarship-opportunities) 
+* [Kubernetes youtube live 'Office Hours' Thursdays 1pm EST](https://www.youtube.com/c/KubernetesCommunity/live)
+* [Join Kubernetes Slack Channel](http://slack.k8s.io/)
+* [Linux Foundation Events](https://events.linuxfoundation.org/events/kubecon-cloudnativecon-europe-2018/)
+
+# People to Follow
+* [Kelsey Hightower](https://twitter.com/kelseyhightower)
+* [Michelle Noorali](https://twitter.com/michellenoorali)
+* [Chen Goldberg](https://twitter.com/GoldbergChen)
+* [Clayton Coleman](https://twitter.com/smarterclayton)
+* [Amy Chen](https://twitter.com/TheAmyCode)
+* [Sarah Novotny](https://twitter.com/sarahnovotny)
+* [Jessie Frazelle](https://twitter.com/jessfraz)
+* [Jorge Castro](https://twitter.com/castrojo)
+
+
+# Nitty Gritty Components of Kubernetes (If you reeeeally want to know..)
+### ([Thanks to this article for concise definitions](https://blog.giantswarm.io/understanding-basic-kubernetes-concepts-i-introduction-to-pods-labels-replicas/) as well as Kubernetes docs)
 #### Pods
 The smallest deployable unit of computing that can be created and managed in Kubernetes. Pods *can* contain one single container, but they aren't limited to just one. All containers in a pod run as if they would have been running on a single host in pre-container world. They share a set of Linux namespaces and do not run isolated from each other. This results in them sharing an IP address and port space, and being able to find each other over localhost or communicate over the IPC namespace. Further, all containers in a pod have access to shared volumes, that is they can mount and work on the same volumes if needed. A YAML (Yet Another Markup Language) file is used to define a pod. Below is an example pod written in YAML:
 ```apiVersion: v1
@@ -91,54 +136,5 @@ spec:
     run: my-nginx
 ```
 
-# Gimme Some Context - The Big Dog$ in the Container Game:
-### Or at least those that were represented at KubeCon
-* Google
-* Google Cloud Platform
-* Heptio
-* IBM
-* Microsoft - Azure
-* Amazon - AWS
-* Docker
-* RedHat
-* CoreOS
-* Tigera
-* Mezosphere
-* DataDog
-* Sysdig
-* WeaveWorks
-* Mirantis
-* huawei
-* Meteor
-* Dynatrace
-
-
-# Notable Talks
-* Guinevere's
-* Justin ___
-* ??? 
-* ?? 
-
-# Take Aways
-### Helpful Resources
-* [Kubernetes Docs (incl. tutorial)](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
-* [Kubernetes the Hard Way](https://github.com/kelseyhightower/kubernetes-the-hard-way)
-* [Kubernetes Bootcamp](https://kubernetesbootcamp.github.io/kubernetes-bootcamp/)
-* [ATL Kubernetes Meetup](https://www.meetup.com/Kubernetes-Atlanta-Meetup)
-* [Kubernetes Mentoring Initiative](https://github.com/kubernetes/community/tree/master/mentoring)
-* [Kubernetes.io](https://kubernetes.io/)
-* [Cloud Native Computing Foundation](https://www.cncf.io/)
-* [KubeCon 2018 Copenhagen (May 2-4) Scholarship Opportunity](http://events.linuxfoundation.org/events/kubecon-and-cloudnativecon-europe/attend/scholarship-opportunities) 
-* [Kubernetes youtube live 'Office Hours' Thursdays 1pm EST](https://www.youtube.com/c/KubernetesCommunity/live)
-* [Join Kubernetes Slack Channel](http://slack.k8s.io/)
-* [Linux Foundation Events](https://events.linuxfoundation.org/events/kubecon-cloudnativecon-europe-2018/)
-
-### People to Follow
-* [Kelsey Hightower](https://twitter.com/kelseyhightower)
-* [Michelle Noorali](https://twitter.com/michellenoorali)
-* [Chen Goldberg](https://twitter.com/GoldbergChen)
-* [Clayton Coleman](https://twitter.com/smarterclayton)
-* [Amy Chen](https://twitter.com/TheAmyCode)
-* [Sarah Novotny](https://twitter.com/sarahnovotny)
-* [Jessie Frazelle](https://twitter.com/jessfraz)
-* [Jorge Castro](https://twitter.com/castrojo)
+# In Conclusion
+To be quite honest, my experience level at this conference did inhibit me from getting the most possible out of it. Plus the fact that it isn't immediately relevant to my work at BNR means that Kubernetes lands on the back-burner. I have spent some hours studying up since returning however and do think learning this will allow me to learn a lot more about Linux and general computer architecture that I feel I am sorely lacking. If anyone is interested in learning more, I brought home several books and resources I'd love to share more! 
