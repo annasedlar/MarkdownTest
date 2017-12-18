@@ -1,4 +1,3 @@
-# MarkdownTest
 ---
 layout: post
 title:  "KubeCon Review - Containers, Kubernetes, Orchestration, woah!"
@@ -33,17 +32,23 @@ What value does this hold for Big Nerd Ranch? This was on my mind throughout the
 # Nitty Gritty Components of Kubernetes
 
 # Give Me Some Context - The Big Dogs in the Container Game
+### Or at least those that were represented at KubeCon
 * Google
 * Google Cloud Platform
 * Heptio
 * IBM
 * Microsoft - Azure
 * Amazon - AWS
+* Docker
 * RedHat
 * CoreOS
+* Tigera
 * Mezosphere
 * DataDog
-* 
+* Sysdig
+* WeaveWorks
+* Dynatrace
+
 
 # Notable Talks
 * Guinevere's
@@ -54,6 +59,9 @@ What value does this hold for Big Nerd Ranch? This was on my mind throughout the
 # Take Aways
 ### Helpful Resources
 * [Kubernetes Docs (incl. tutorial)](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
+* [Kubernetes the Hard Way](https://github.com/kelseyhightower/kubernetes-the-hard-way)
+* [Kubernetes Bootcamp](https://kubernetesbootcamp.github.io/kubernetes-bootcamp/)
+* [ATL Kubernetes Meetup](https://www.meetup.com/Kubernetes-Atlanta-Meetup)
 * [Kubernetes Mentoring Initiative](https://github.com/kubernetes/community/tree/master/mentoring)
 * [Kubernetes](https://kubernetes.io/)
 * [Cloud Native Computing Foundation](https://www.cncf.io/)
