@@ -27,7 +27,7 @@ Kubernetes was designed to operationalize containerized applications. Using Kube
 
 Kubernetes is definitely more Devops than Dev work. In fact, it's more Ops than Devops. I was certainly in the 1% of least experienced at this conference of 4300. It was fasinating to witness the excitement in what normally is the slower, more stable world of Ops and I can certainly see the benefits of managing apps in containers in the cloud. Cloud-native - the concept of the cloud being the default deployment environment for apps (versus in proprietary data centers that must be monitored and controlled by a company's own employees). I left exhausted and excited to learn more.
 
-What value does this hold for Big Nerd Ranch? This was on my mind throughout the conference and to be honest, I'd love to hear the thoughts from other, more experienced nerds on this topic. From what I understand, our client work is usually a code hand-off and the client is responsible for deploying the application where and how they see fit. And for our in-house apps, I have only seen us use Heroku, which seems perfectly sufficient for hosting our small apps. If we were a product team, Kubernetes would definitely be more relevant. 
+What value does this hold for Big Nerd Ranch? This was on my mind throughout the conference and to be honest, I'd love to hear the thoughts from other, more experienced nerds on this topic. From what I understand, our client work is usually a code hand-off and the client is responsible for deploying the application where and how they see fit. And for our in-house apps, I have only seen us use Heroku, which seems perfectly sufficient for hosting our small apps. I imagine if we were a product team, Kubernetes would definitely be more relevant. 
 
 # Nitty Gritty Components of Kubernetes
 
@@ -71,14 +71,14 @@ What value does this hold for Big Nerd Ranch? This was on my mind throughout the
 * [Linux Foundation Events](https://events.linuxfoundation.org/events/kubecon-cloudnativecon-europe-2018/)
 
 ### People to Follow
-* [Kelsey Hightower] (https://twitter.com/kelseyhightower)
-* [Michelle Noorali] (https://twitter.com/michellenoorali)
-* [Chen Goldberg] (https://twitter.com/GoldbergChen)
-* [Clayton Coleman] (https://twitter.com/smarterclayton)
-* [Amy Chen] (https://twitter.com/TheAmyCode)
-* [Sarah Novotny] (https://twitter.com/sarahnovotny)
-* [Jessie Frazelle] (https://twitter.com/jessfraz)
-* [Jorge Castro] (https://twitter.com/castrojo)
+* [Kelsey Hightower](https://twitter.com/kelseyhightower)
+* [Michelle Noorali](https://twitter.com/michellenoorali)
+* [Chen Goldberg](https://twitter.com/GoldbergChen)
+* [Clayton Coleman](https://twitter.com/smarterclayton)
+* [Amy Chen](https://twitter.com/TheAmyCode)
+* [Sarah Novotny](https://twitter.com/sarahnovotny)
+* [Jessie Frazelle](https://twitter.com/jessfraz)
+* [Jorge Castro](https://twitter.com/castrojo)
 
 
 Kubernetes 101 w/ Justin ____? - kubelets ~= docker. A single standalone unit that has one job (more options when in a cluster but you can have just a standalone kubelet on a server). Yaml on discs. Runs that container and that's his job.
